@@ -4,47 +4,51 @@ import { Table } from "reactstrap";
 function TableData(props) {
   if (props.currentPage === "") {
     return (
-      <Table striped>
-        <thead>
-          <tr>
-            <th></th>
-            <th>
-              <a href="#name" onClick={() => props.sortByFirst()}>
-                First
-              </a>
-            </th>
-            <th>
-              <a href="#name" onClick={() => props.sortByLast()}>
-                Last
-              </a>
-            </th>
-            <th>Phone</th>
-            <th>Email</th>
-          </tr>
-        </thead>
-        <tbody>
-          {props.results.map((result) => (
-            <tr key={result.cell}>
-              <th scope="row">
-                <a
-                  href="#singlePage"
-                  onClick={() => props.handlePageChange({ result })}
-                >
-                  <img
-                    src={result.picture.thumbnail}
-                    className="picture"
-                    alt="http://placekitten.com/200/300"
-                  ></img>
+      <div className="container" style={{ margin: "0 auto" }}>
+        <Table striped hover style={{ textAlign: "center" }}>
+          <thead>
+            <tr>
+              <th></th>
+              <th>
+                <a href="#name" onClick={() => props.sortByFirst()}>
+                  First
                 </a>
               </th>
-              <td>{result.name.first}</td>
-              <td>{result.name.last}</td>
-              <td>{result.cell}</td>
-              <td>{result.email}</td>
+              <th>
+                <a href="#name" onClick={() => props.sortByLast()}>
+                  Last
+                </a>
+              </th>
+              <th>Phone</th>
+              <th>Email</th>
+              <th>DOB</th>
             </tr>
-          ))}
-        </tbody>
-      </Table>
+          </thead>
+          <tbody>
+            {props.results.map((result) => (
+              <tr key={result.cell}>
+                <td>
+                  <a
+                    href="#singlePage"
+                    onClick={() => props.handlePageChange({ result })}
+                  >
+                    <img
+                      src={result.picture.thumbnail}
+                      className="picture"
+                      alt="http://placekitten.com/200/300"
+                    ></img>
+                  </a>
+                </td>
+                <td>{result.name.first}</td>
+                <td>{result.name.last}</td>
+                <td>{result.cell}</td>
+                <td>{result.email}</td>
+                <td>{result.dob.date}</td>
+              </tr>
+            ))}
+          </tbody>
+        </Table>
+      </div>
     );
   } else if (typeof props.currentPage === "string") {
     let matches = props.results.filter((result) => {
@@ -56,7 +60,7 @@ function TableData(props) {
     });
     return (
       <div className="container">
-        <Table striped>
+        <Table striped hover>
           <thead>
             <tr>
               <th>Avatar</th>
@@ -72,12 +76,13 @@ function TableData(props) {
               </th>
               <th>Phone</th>
               <th>Email</th>
+              <th>DOB</th>
             </tr>
           </thead>
           <tbody>
             {matches.map((result) => (
               <tr key={result.cell}>
-                <th scope="row">
+                <td>
                   <a
                     href="#singlePage"
                     onClick={() => props.handlePageChange({ result })}
@@ -88,11 +93,12 @@ function TableData(props) {
                       alt="http://placekitten.com/200/300"
                     ></img>
                   </a>
-                </th>
+                </td>
                 <td>{result.name.first}</td>
                 <td>{result.name.last}</td>
                 <td>{result.cell}</td>
                 <td>{result.email}</td>
+                <td>{result.dob.date}</td>
               </tr>
             ))}
           </tbody>
