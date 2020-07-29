@@ -10,7 +10,6 @@ export default class EmployeeContainer extends Component {
     currentPage: ""
   };
 
-  // When this component mounts, search for the movie "The Matrix"
   componentDidMount() {
     this.searchEmployees();
   }
@@ -24,10 +23,12 @@ export default class EmployeeContainer extends Component {
   };
 
   handlePageChange = (page) => {
+    console.log(page);
     this.setState({ currentPage: page });
   };
 
   handleInputChange = (e) => {
+    console.log(e);
     this.handlePageChange(e.target.value);
   };
 
@@ -44,10 +45,10 @@ export default class EmployeeContainer extends Component {
       }
       return comparison;
     }
-    // set state to be sorted ascending or descending
+
     this.setState({ result: firstName });
   };
-  // calling the sortByLast() function, created in the Table component
+
   sortByLast = () => {
     let lastName = this.state.result.sort(compare);
     function compare(a, b) {
@@ -61,7 +62,7 @@ export default class EmployeeContainer extends Component {
       }
       return comparison;
     }
-    // set state to be sorted ascending or descending
+
     this.setState({ result: lastName });
   };
 
