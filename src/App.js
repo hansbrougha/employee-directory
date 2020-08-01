@@ -11,6 +11,11 @@ function App() {
           path={process.env.PUBLIC_URL + "/"}
           component={Container}
         />
+        <Route
+          exact
+          path={process.env.PUBLIC_URL + "/employee-directory"}
+          component={Container}
+        />
       </Router>
     </div>
   );
